@@ -1,0 +1,51 @@
+title               =  d_helix  
+define                   = -DPOSRES -DFC=1000
+cpp                 =  /lib/cpp -traditional 
+constraints         =   h-bonds
+integrator          =  md
+tinit = 0
+dt                  =  0.002  ; ps !
+nsteps              =  50000      ; total 100 ps.
+nstcomm             =  0
+nstcalcenergy             =  1000
+nstxout             =  0
+nstxout-compressed  =  1000
+compressed-x-grps   =  System
+nstvout             =  0
+nstfout             =  0
+nstlog              =  1000
+nstenergy           =  0
+nstlist             =  120
+ns_type             =  grid
+; Long-range
+coulombtype         =  pme
+optimize_fft        = yes
+vdwtype             =  cut-off ; shift  
+rlist               =  0.9 ; 0.4                      ; 11 A cut-off for ns
+rvdw                =  0.9 ; 0.4                      ; 10 A cut-off for vdw
+rcoulomb            =  0.9 ; 0.4                      ; 10 A cut-off for coulomb
+; Berendsen temperature coupling is on in two groups
+Tcoupl              =  V-rescale
+tau_t               =   0.1    0.1   ; 0.1    0.1
+tc-grps             =  Protein   Non-protein
+ref_t               =  300     300   ; 300    300
+
+; Isotropic pressure coupling is now on
+Pcoupl              =  no ; berendsen
+Pcoupltype          =  anisotropic
+tau_p               =  5
+compressibility     =  4.5e-5  4.5e-4 4.5e-5 0 0 0
+ref_p               =  1.0 1.0 100.0 1.0 1.0 1.0
+
+; Energy monitoring
+;energygrps          =  System
+; Generate velocites is on at 300 K.
+gen_vel             = yes
+gen_temp            = 300
+gen_seed            = -1
+
+;quite curios options 
+;disre=Simple
+;refcoord_scaling         = com
+cutoff-scheme = Verlet
+

@@ -1,0 +1,20 @@
+#include "../amber99sb-star-ildn-mut.ff/forcefield.itp"
+#include "./ffMOL.itp"
+#include "./ligand_6sd9_MOLA.itp"
+#include "./protein_6sd9_protein.itp"
+#include "./ligand_6sd9_MOLB.itp"
+#include "../amber99sb-star-ildn-mut.ff/tip3p.itp"
+#include "../amber99sb-star-ildn-mut.ff/ions.itp"
+
+[ system ]
+system apo in water
+
+[ molecules ]
+6sd9_ligandA 1
+Protein_chain_A 1
+6sd9_ligandB 1
+SOL         15376
+NaJ              46
+ClJ              51
+
+#include "./ii.itp"

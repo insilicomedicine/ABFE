@@ -1,0 +1,53 @@
+define               = -DPOSRES
+integrator          =  sd
+dt                  =  0.002
+nsteps              =  500000
+
+constraints         =  allbonds
+constraint_algorithm = LINCS
+
+nstcomm             =  2500
+comm_mode           =  linear
+
+nstxtcout           =  2500
+;nstxout             =  25000
+;nstvout             =  25000
+;nstfout             =  25000
+;nstxout             =  100
+;nstvout             =  100
+;nstfout             =  100
+
+
+rlist               =  1.25
+rcoulomb            =  1.25
+rvdw                =  1.25
+
+cutoff-scheme       =  Verlet
+ns_type             =  grid
+nstlist             =  20
+
+pbc                 =  xyz
+
+coulombtype         =  pme
+fourierspacing      =  0.12
+pme_order           =  4
+ewald_rtol          =  1e-5
+ewald_geometry      =  3d
+optimize_fft        =  yes
+
+vdwtype             =  cut-off
+rvdw_switch         =  1.0
+
+tcoupl              =  berendsen
+tc_grps             =  system
+tau_t               =  0.1
+ref_t               =  300
+
+pcoupl              =  berendsen
+pcoupltype          =  isotropic
+ref_p               =  1.0
+tau_p               =  40
+compressibility     =  4.5e-5
+
+gen_vel             =  no
+gen_temp            =  300

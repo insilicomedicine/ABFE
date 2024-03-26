@@ -1,0 +1,59 @@
+title               =  d_helix  
+define                   = 
+cpp                 =  /lib/cpp -traditional 
+continuation        =  no
+constraints         =   h-bonds
+integrator          =  md
+tinit = 0
+dt                  =  0.002  ; ps !
+nsteps              =  250000      ; total 500 ps.
+nstcomm             =  1000
+comm-grps           =  Protein non-Protein
+nstcalcenergy             =  10000
+nstxout             =  10000
+nstxout-compressed  =  1000
+compressed-x-grps   =  System
+nstvout             =  0
+nstfout             =  0
+nstlog              =  10000
+nstenergy           =  0
+nstlist             =  120
+ns_type             =  grid
+; Long-range
+coulombtype         =  pme
+optimize_fft = yes
+vdwtype             =  cut-off ; shift  
+rlist               =  0.9 ; 0.4                      ; 11 A cut-off for ns
+rvdw                =  0.9 ; 0.4                      ; 10 A cut-off for vdw
+rcoulomb            =  0.9 ; 0.4                      ; 10 A cut-off for coulomb
+; Berendsen temperature coupling is on in two groups
+Tcoupl              =  V-rescale
+tau_t               =   3    3   ; 0.1    0.1
+tc-grps             =  Protein   Non-protein
+ref_t               =  300     300   ; 300    300
+
+; Energy monitoring
+;energygrps          =  System
+; Generate velocites is on at 300 K.
+gen_vel             =  yes
+gen_temp = 300
+gen_seed = -1
+
+;quite curios options 
+;disre=Simple
+;refcoord_scaling         = com
+cutoff-scheme = Verlet
+
+pcoupl		        = C-rescale	    ; Pressure coupling on in NPT
+pcoupltype	        = isotropic	            ; uniform scaling of box vectors
+tau_p		        = 3.0		            ; time constant, in ps
+ref_p		        = 1.0		            ; reference pressure, in bar
+compressibility     = 4.5e-5	            ; isothermal compressibility of water, bar^-1
+refcoord_scaling    = com
+; Periodic boundary conditions
+pbc		= xyz		; 3-D PBC
+; Dispersion correction
+DispCorr	= EnerPres	; account for cut-off vdW scheme
+; Velocity generation
+
+
